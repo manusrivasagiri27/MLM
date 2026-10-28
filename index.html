@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MLM – Media | Arts | Entertainment</title>
+<style>
+:root{
+  --bg:#f7f5fb;--surface:#ffffff;--ink:#1c1b2e;--muted:#6a6880;--line:#e3dff0;
+  --brand:#6d3fd1;--brand-ink:#ffffff;
+  --video:#dcecff;--video-b:#3b82d6;--design:#eadfff;--design-b:#8b5cf6;
+  --mkt:#dcf5e0;--mkt-b:#2f9e54;--event:#ffeccc;--event-b:#e8920c;
+  --bad:#fde4e6;--good:#e3f6e7;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#14121f;--surface:#1f1c2f;--ink:#f0eefa;--muted:#a19fb8;--line:#33304a;--brand:#9b73f2;--brand-ink:#14121f;
+  --video:#17304f;--design:#2c2250;--mkt:#173a22;--event:#4a3512;--bad:#43202a;--good:#17361f;}}
+:root[data-theme="dark"]{
+  --bg:#14121f;--surface:#1f1c2f;--ink:#f0eefa;--muted:#a19fb8;--line:#33304a;--brand:#9b73f2;--brand-ink:#14121f;
+  --video:#17304f;--design:#2c2250;--mkt:#173a22;--event:#4a3512;--bad:#43202a;--good:#17361f;}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;line-height:1.5}
+h1,h2,h3{font-family:"Segoe Print","Comic Sans MS","Marker Felt",cursive;margin:0 0 .4em;letter-spacing:.2px}
+.app{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+nav{background:var(--surface);border-right:2px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px}
+.logo{display:flex;align-items:center;gap:8px;font-size:28px;font-weight:900;margin-bottom:4px;font-family:Impact,"Arial Black",sans-serif}
+.logo svg{width:30px;height:30px}
+.tag{font-size:12px;color:var(--muted);margin-bottom:16px}
+nav button{all:unset;cursor:pointer;display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:10px;font-weight:600;color:var(--muted)}
+nav button:hover{background:var(--bg)}
+nav button.on{background:var(--design);color:var(--ink)}
+nav button:focus-visible,.card:focus-visible,.btn:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+.badge{margin-left:auto;background:var(--brand);color:var(--brand-ink);border-radius:99px;font-size:12px;padding:0 8px}
+.spacer{flex:1}
+main{padding:28px clamp(16px,4vw,44px) 60px;max-width:1000px;width:100%}
+.hero h1{font-size:clamp(26px,4vw,38px)}
+.hero p{color:var(--muted);margin:0 0 6px}
+.flow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 22px}
+.flow span{border:2px solid var(--line);background:var(--surface);padding:4px 14px;border-radius:99px;font-weight:700;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
+.card{all:unset;cursor:pointer;display:block;border:2.5px solid;border-radius:16px;padding:18px;text-align:center;font-weight:700;transition:transform .15s}
+.card:hover{transform:translateY(-3px)}
+.card .ic{font-size:38px;display:block;margin-bottom:6px}
+.card small{display:block;font-weight:400;color:var(--muted);margin-top:4px}
+.c-video{background:var(--video);border-color:var(--video-b)}.c-design{background:var(--design);border-color:var(--design-b)}
+.c-mkt{background:var(--mkt);border-color:var(--mkt-b)}.c-event{background:var(--event);border-color:var(--event-b)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+.box{border:2px solid var(--line);border-radius:16px;padding:18px}
+.box.bad{background:var(--bad)}.box.good{background:var(--good)}
+.box ul{list-style:none;padding:0;margin:8px 0 0}.box li{padding:3px 0}
+.panel{background:var(--surface);border:2px solid var(--line);border-radius:16px;padding:20px;margin-top:18px}
+label{display:block;font-weight:700;margin:12px 0 4px;font-size:14px}
+input,select,textarea{width:100%;padding:10px 12px;border-radius:10px;border:2px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+.btn{all:unset;cursor:pointer;display:inline-block;margin-top:14px;background:var(--brand);color:var(--brand-ink);padding:10px 20px;border-radius:10px;font-weight:700}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid var(--line)}
+.proj{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.proj:last-child{border:0}
+.pill{padding:2px 12px;border-radius:99px;font-size:12px;font-weight:700;border:2px solid}
+.bar{height:8px;background:var(--line);border-radius:9px;overflow:hidden;width:140px}
+.bar i{display:block;height:100%;background:var(--brand);transition:width .4s}
+.empty{color:var(--muted);text-align:center;padding:26px}
+.chat{height:260px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding:6px}
+.msg{max-width:78%;padding:8px 14px;border-radius:14px;background:var(--bg)}
+.msg.me{align-self:flex-end;background:var(--brand);color:var(--brand-ink)}
+.row{display:flex;gap:8px}.row input{flex:1}.row .btn{margin:0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:99px;font-weight:700;z-index:9}
+.foot{margin-top:34px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:14px}
+@media(max-width:720px){
+  .app{grid-template-columns:1fr}
+  nav{position:fixed;bottom:0;left:0;right:0;top:auto;height:auto;flex-direction:row;justify-content:space-around;z-index:5;border-right:0;border-top:2px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
+  nav button{flex-direction:column;gap:0;font-size:11px;padding:6px 8px}
+  .logo,.tag,.spacer{display:none}
+  main{padding-bottom:100px}.two{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <nav aria-label="Main">
+    <div class="logo"><svg viewBox="0 0 30 30"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e0489b"/><stop offset="1" stop-color="#6d3fd1"/></linearGradient></defs><path d="M4 3l23 12L4 27z" fill="url(#g)"/></svg>MLM</div>
+    <div class="tag">Media | Arts | Entertainment</div>
+    <button data-v="home" class="on">🏠 Home</button>
+    <button data-v="projects">📁 Projects<span class="badge" id="cnt" hidden>0</span></button>
+    <button data-v="services">🧩 Services</button>
+    <button data-v="messages">💬 Messages</button>
+    <button data-v="profile">👤 Profile</button>
+  </nav>
+  <main id="view"></main>
+</div>
+<div id="toast" class="toast" hidden></div>
+
+<script>
+var SERVICES=[
+ {id:"video",name:"Video Production",icon:"🎥",cls:"c-video",desc:"Shoot, edit and deliver videos, reels and music videos."},
+ {id:"design",name:"Graphic Design",icon:"🎨",cls:"c-design",desc:"Logos, posters, cover art and brand kits."},
+ {id:"mkt",name:"Marketing",icon:"📣",cls:"c-mkt",desc:"Campaigns, social media plans and promotion."},
+ {id:"event",name:"Event Management",icon:"📅",cls:"c-event",desc:"Launches, shows and pop-ups, planned end to end."}
+];
+var STAGES=["Planning","Creating","Reviewing","Delivered"];
+var state={view:"home",projects:[],pick:"video",
+  chat:[{me:false,t:"Hi! I'm your MLM project partner. Tell me what you want to create."}],
+  profile:{name:"",type:"Emerging creator",email:""}};
+
+function $(s){return document.querySelector(s)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function svc(id){return SERVICES.filter(function(s){return s.id===id})[0]}
+function toast(t){var e=$("#toast");e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(function(){e.hidden=true},2200)}
+function go(v){state.view=v;render()}
+
+function serviceCards(){
+  return '<div class="grid">'+SERVICES.map(function(s){
+    return '<button class="card '+s.cls+'" data-svc="'+s.id+'"><span class="ic">'+s.icon+'</span>'+s.name+'<small>'+s.desc+'</small></button>'}).join("")+'</div>';
+}
+
+function home(){
+  return '<section class="hero"><h1>Your Complete Media Partner</h1>'+
+  '<p>One vision. One platform. Endless possibilities.</p>'+
+  '<div class="flow"><span>Plan</span><span>Create</span><span>Promote</span><span>Grow</span></div></section>'+
+  serviceCards()+
+  '<div class="two"><div class="box bad"><h3>The problem</h3><p>Creators, artists and small brands juggle too many vendors.</p><ul><li>❌ Inconsistent creative output</li><li>❌ Project delays</li><li>❌ Communication gaps</li><li>❌ Increased costs</li></ul></div>'+
+  '<div class="box good"><h3>The MLM solution</h3><p>One unified media ecosystem with a cohesive creative strategy.</p><ul><li>✅ Simplified workflows</li><li>✅ Reduced costs</li><li>✅ Consistent quality</li><li>✅ Faster turnaround</li></ul></div></div>'+
+  '<div class="foot"><b>Made for:</b> Emerging creators · Independent artists · Small brands <span class="pill" style="border-color:var(--brand);color:var(--brand)">All in one place!</span></div>';
+}
+
+function services(){
+  var s=svc(state.pick);
+  var opts=SERVICES.map(function(x){return '<option value="'+x.id+'"'+(x.id===state.pick?' selected':'')+'>'+x.name+'</option>'}).join("");
+  return '<h1>Start a project</h1><p style="color:var(--muted)">Pick a service and tell us your idea. Everything stays in one place.</p>'+serviceCards()+
+  '<div class="panel"><h3>'+s.icon+' '+s.name+'</h3><p style="color:var(--muted);margin-top:0">'+s.desc+'</p>'+
+  '<label for="f-title">Project name</label><input id="f-title" placeholder="e.g. Debut single music video">'+
+  '<label for="f-svc">Service</label><select id="f-svc">'+opts+'</select>'+
+  '<label for="f-due">Target date</label><input id="f-due" type="date">'+
+  '<label for="f-note">Describe your idea</label><textarea id="f-note" rows="3" placeholder="Style, audience, budget, references…"></textarea>'+
+  '<button class="btn" id="create">Create project</button></div>';
+}
+
+function projects(){
+  if(!state.projects.length)return '<h1>Projects</h1><div class="panel empty">No projects yet.<br><button class="btn" data-go="services">Start your first project</button></div>';
+  return '<h1>Projects</h1><div class="panel">'+state.projects.map(function(p,i){
+    var s=svc(p.svc),pct=Math.round(p.stage/(STAGES.length-1)*100);
+    return '<div class="proj"><span style="font-size:28px">'+s.icon+'</span><div style="flex:1;min-width:150px"><b>'+esc(p.title)+'</b><div style="color:var(--muted);font-size:13px">'+s.name+(p.due?' · due '+esc(p.due):'')+'</div></div>'+
+    '<div><div class="bar"><i style="width:'+pct+'%"></i></div><small>'+STAGES[p.stage]+'</small></div>'+
+    '<button class="btn ghost" style="margin:0" data-adv="'+i+'"'+(p.stage>=3?' disabled':'')+'>'+(p.stage>=3?'Done':'Next stage')+'</button>'+
+    '<button class="btn ghost" style="margin:0" data-del="'+i+'" aria-label="Delete project">🗑</button></div>'}).join("")+'</div>';
+}
+
+function messages(){
+  return '<h1>Messages</h1><div class="panel"><div class="chat" id="chat">'+state.chat.map(function(m){return '<div class="msg'+(m.me?' me':'')+'">'+esc(m.t)+'</div>'}).join("")+
+  '</div><div class="row" style="margin-top:10px"><input id="msg" placeholder="Type a message…" aria-label="Message"><button class="btn" id="send">Send</button></div></div>';
+}
+
+function profile(){
+  var p=state.profile,types=["Emerging creator","Independent artist","Small brand"];
+  return '<h1>Profile</h1><div class="panel"><label for="p-name">Name</label><input id="p-name" value="'+esc(p.name)+'">'+
+  '<label for="p-email">Email</label><input id="p-email" type="email" value="'+esc(p.email)+'">'+
+  '<label for="p-type">I am a</label><select id="p-type">'+types.map(function(t){return '<option'+(t===p.type?' selected':'')+'>'+t+'</option>'}).join("")+'</select>'+
+  '<button class="btn" id="save">Save profile</button> <button class="btn ghost" id="theme">Switch theme</button></div>';
+}
+
+var VIEWS={home:home,services:services,projects:projects,messages:messages,profile:profile};
+
+function render(){
+  $("#view").innerHTML=VIEWS[state.view]();
+  document.querySelectorAll("nav button").forEach(function(b){b.classList.toggle("on",b.dataset.v===state.view)});
+  var c=$("#cnt");c.textContent=state.projects.length;c.hidden=!state.projects.length;
+  var ch=$("#chat");if(ch)ch.scrollTop=ch.scrollHeight;
+  window.scrollTo(0,0);
+}
+
+document.addEventListener("click",function(e){
+  var t=e.target.closest("button");if(!t)return;
+  if(t.dataset.v)return go(t.dataset.v);
+  if(t.dataset.go)return go(t.dataset.go);
+  if(t.dataset.svc){state.pick=t.dataset.svc;return go("services")}
+  if(t.dataset.adv){state.projects[+t.dataset.adv].stage++;render();return toast("Project moved forward")}
+  if(t.dataset.del){state.projects.splice(+t.dataset.del,1);render();return toast("Project deleted")}
+  if(t.id==="create"){
+    var title=$("#f-title").value.trim();
+    if(!title){$("#f-title").focus();return toast("Enter a project name")}
+    state.projects.push({title:title,svc:$("#f-svc").value,due:$("#f-due").value,note:$("#f-note").value,stage:0});
+    state.chat.push({me:false,t:"Project “"+title+"” is created. Our team will share a plan soon."});
+    toast("Project created");return go("projects");
+  }
+  if(t.id==="send")return send();
+  if(t.id==="save"){state.profile={name:$("#p-name").value,email:$("#p-email").value,type:$("#p-type").value};return toast("Profile saved")}
+  if(t.id==="theme"){var r=document.documentElement,d=r.dataset.theme==="dark"||(!r.dataset.theme&&matchMedia("(prefers-color-scheme:dark)").matches);r.dataset.theme=d?"light":"dark"}
+});
+document.addEventListener("change",function(e){if(e.target.id==="f-svc"){state.pick=e.target.value}});
+document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target.id==="msg")send()});
+function send(){
+  var i=$("#msg"),v=i.value.trim();if(!v)return;
+  state.chat.push({me:true,t:v});
+  state.chat.push({me:false,t:"Thanks! We got your message and will reply within one working day."});
+  render();$("#msg").focus();
+}
+render();
+</script>
+</body>
+</html>
